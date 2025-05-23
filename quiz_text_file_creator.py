@@ -43,6 +43,19 @@ class QuizCreator:
 
 
 # 5. Define the file it is going to be saved as.
+    def save_to_file(self, filename="quiz_creator.txt"):
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(f"Quiz Title: {self.title.title()}\n\n")
+            f.write(f"Quiz Item Quantity: {self.item_quantity}\n\n")
 
+            for i, item in enumerate(self.quiz_data):
+                f.write(f"Question {i+1}: {item['question']}\n")
+                f.write(f"Option A: {item['choices'][0]}\n")
+                f.write(f"Option B: {item['choices'][1]}\n")
+                f.write(f"Option C: {item['choices'][2]}\n")
+                f.write(f"Option D: {item['choices'][3]}\n")
+                f.write(f"Answer: {item['answer']}\n\n")
+
+        print(f"\nQuiz saved to '{filename}' successfully!")
 
 # 6. Make a variable storage for the class.
