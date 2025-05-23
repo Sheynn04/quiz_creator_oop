@@ -15,6 +15,7 @@ class QuizCreator:
         while True:
             try:
                 self.item_quantity = int(input("How many questions will be on this quiz?: "))
+                break
             except ValueError:
                 print("Please input a proper value!")
 
@@ -26,7 +27,7 @@ class QuizCreator:
 
             choices = []
             for option in ["A", "B", "C", "D"]:
-                choice = input(f"Enter option{option}: ").strip()
+                choice = input(f"Enter option {option}: ").strip()
                 choices.append(choice)
             while True:
                 answer = input("Which letter is the correct answer?: ").upper()
@@ -58,4 +59,11 @@ class QuizCreator:
 
         print(f"\nQuiz saved to '{filename}' successfully!")
 
+    def run(self):
+        self.get_title()
+        self.get_item_quantity()
+        self.collect_questions()
+        self.save_to_file()
 # 6. Make a variable storage for the class.
+creator = QuizCreator()
+creator.run()
