@@ -21,8 +21,9 @@ class Question:
         return user_answer.upper() == self.answer.upper()
 
 # 4. Create a class for the quiz part.
-
 class Quiz:
+
+# 5. Define the functions necessary.
     def __init__(self, filename):
         self.filename = filename
         self.questions = []
@@ -51,8 +52,8 @@ class Quiz:
         random.shuffle(self.questions)
         score = 0
 
-        for idx, question in enumerate(self.questions, 1):
-            question.display(idx)
+        for ques_itt, question in enumerate(self.questions, 1):
+            question.display(ques_itt)
             user_answer = input("Choose the letter of your answer: ").upper()
 
             if question.is_correct(user_answer):
@@ -63,7 +64,7 @@ class Quiz:
 
         print(f"\nYour final score is: {score} out of {len(self.questions)}")
 
-# 5. Run the classes.
+# 6. Run the classes.
 quiz = Quiz("quiz_creator.txt")
 quiz.loading_questions()
 quiz.start()
