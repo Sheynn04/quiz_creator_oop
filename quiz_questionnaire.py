@@ -10,13 +10,15 @@ class Question:
         self.choices = choices
         self.answer = answer
 
-    def output(self):
-        print(f"Q{ques_num +1}: {ques_contents['question']}")
-        print(f"A. {ques_contents['choices'][0]}")
-        print(f"B. {ques_contents['choices'][1]}")
-        print(f"C. {ques_contents['choices'][2]}")
-        print(f"D. {ques_contents['choices'][3]}")
-    
+    def display(self, number):
+        print(f"Q{number}: {self.text}")
+        print(f"A. {self.choices[0]}")
+        print(f"B. {self.choices[1]}")
+        print(f"C. {self.choices[2]}")
+        print(f"D. {self.choices[3]}")
+
+    def is_correct(self, user_answer):
+        return user_answer.upper() == self.answer.upper()
 
 # 4. Create a class for the quiz part.
 
@@ -45,3 +47,24 @@ class Quiz:
                 answer = line.split(":", 1)[1].strip()
                 self.questions.append(Question(question_text, choices, answer))
 
+    def start(self):
+        random.shuffle(self.questions)
+        score = 0
+
+        for idx, question in enumerate(self.questions, 1):
+            question.display(idx)
+            user_answer = input("Choose the letter of your answer: ").upper()
+
+            if question.is_correct(user_answer):
+                print("Correct!")
+                score += 1
+            else:
+                print(f"Wrong! The correct answer was: {question.answer}")
+
+        print(f"\nYour final score is: {score} out of {len(self.questions)}")
+
+# 5. Run the classes.
+
+quiz = Quiz("quiz_creator.txt")
+quiz.loading_questions()
+quiz.start()
