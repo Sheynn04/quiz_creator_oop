@@ -64,7 +64,6 @@ class Quiz:
         print(f"\nYour final score is: {score} out of {len(self.questions)}")
 
 # 5. Run the classes.
-
 quiz = Quiz("quiz_creator.txt")
 quiz.loading_questions()
 quiz.start()
